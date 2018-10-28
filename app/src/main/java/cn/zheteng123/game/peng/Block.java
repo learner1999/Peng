@@ -14,68 +14,34 @@ import android.graphics.drawable.Drawable;
  *     version: 1.0
  * </pre>
  */
-public class Block {
+public class Block extends Spirit {
+
     private static final String TAG = "Block";
 
-    private int mLeft;
+    private static final int WIDTH = 150;
 
-    private int mTop;
-
-    private int mWidth = 150;
-
-    private int mHeight = 50;
-
-    private Drawable mDrawable;
-
-    private boolean isShow = true;
+    private static final int HEIGHT = 50;
 
     public Block(Context context) {
+        super(context);
+
         // init position
         mLeft = 500;
         mTop = 500;
-
-        mDrawable = context.getResources().getDrawable(R.drawable.block);
     }
 
-    public int getLeft() {
-        return mLeft;
-    }
-
-    public int getTop() {
-        return mTop;
-    }
-
+    @Override
     public int getWidth() {
-        return mWidth;
+        return WIDTH;
     }
 
+    @Override
     public int getHeight() {
-        return mHeight;
+        return HEIGHT;
     }
 
-    public boolean isShow() {
-        return isShow;
-    }
-
-    public void show() {
-        isShow = true;
-    }
-
-    public void hide() {
-        isShow = false;
-    }
-    public void drawSelf(Canvas canvas) {
-        if (!isShow) {
-            return;
-        }
-
-        Rect bounds = new Rect(mLeft, mTop, mLeft + mWidth, mTop + mHeight);
-
-        mDrawable.setBounds(bounds);
-        mDrawable.draw(canvas);
-    }
-
-    public Rect getBounds() {
-        return new Rect(mLeft, mTop, mLeft + mWidth, mTop + mHeight);
+    @Override
+    protected int getDrawableResource() {
+        return R.drawable.block;
     }
 }

@@ -14,57 +14,36 @@ import android.graphics.drawable.Drawable;
  *     version: 1.0
  * </pre>
  */
-public class Paddle {
+public class Paddle extends Spirit {
 
     private static final String TAG = "Paddle";
 
-    private int mLeft;
+    private static final int WIDTH = 200;
 
-    private int mTop;
-
-    private int mWidth = 200;
-
-    private int mHeight = 45;
-
-    private Drawable mDrawable;
+    private static final int HEIGHT = 45;
 
     public Paddle(Canvas canvas, Context context) {
+        super(context);
+
         // init position
-        mLeft = canvas.getWidth() / 2 - mWidth / 2;
-        mTop = canvas.getHeight() - mHeight;
-
-        mDrawable = context.getResources().getDrawable(R.drawable.paddle);
-
-    }
-
-    public int getLeft() {
-        return mLeft;
-    }
-
-    public int getTop() {
-        return mTop;
+        mLeft = canvas.getWidth() / 2 - WIDTH / 2;
+        mTop = canvas.getHeight() - HEIGHT;
     }
 
     public int getWidth() {
-        return mWidth;
+        return WIDTH;
     }
 
     public int getHeight() {
-        return mHeight;
+        return HEIGHT;
+    }
+
+    @Override
+    protected int getDrawableResource() {
+        return R.drawable.paddle;
     }
 
     public void moveX(int x) {
         mLeft += x;
-    }
-
-    public void drawSelf(Canvas canvas) {
-        Rect paddleBounds = new Rect(mLeft, mTop, mLeft + mWidth, mTop + mHeight);
-
-        mDrawable.setBounds(paddleBounds);
-        mDrawable.draw(canvas);
-    }
-
-    public Rect getBounds() {
-        return new Rect(mLeft, mTop, mLeft + mWidth, mTop + mHeight);
     }
 }

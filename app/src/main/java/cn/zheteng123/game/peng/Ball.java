@@ -1,9 +1,7 @@
 package cn.zheteng123.game.peng;
 
 import android.content.Context;
-import android.graphics.Canvas;
 import android.graphics.Rect;
-import android.graphics.drawable.Drawable;
 
 /**
  * <pre>
@@ -14,31 +12,24 @@ import android.graphics.drawable.Drawable;
  *     version: 1.0
  * </pre>
  */
-public class Ball {
+public class Ball extends Spirit {
 
     private static final String TAG = "Ball";
-
-    private int mLeft;
-
-    private int mTop;
 
     public static final int WIDTH = 40;
 
     public static final int HEIGHT = 40;
-
-    private Drawable mDrawable;
 
     private int mSpeedX = -20;
 
     private int mSpeedY = -20;
 
     public Ball(Context context, int left, int top) {
+        super(context);
+
         // init position
         mLeft = left;
         mTop = top;
-
-        mDrawable = context.getResources().getDrawable(R.drawable.ball);
-
     }
 
     public void move(Rect rectCanvas, Rect rectPaddle) {
@@ -57,15 +48,19 @@ public class Ball {
         }
     }
 
-    public boolean isCollide(Rect rect) {
-        return !(mLeft > rect.right || mLeft + WIDTH < rect.left || mTop > rect.bottom || mTop + HEIGHT < rect.top);
+    @Override
+    protected int getWidth() {
+        return WIDTH;
     }
 
-    public void drawSelf(Canvas canvas) {
-        Rect paddleBounds = new Rect(mLeft, mTop, mLeft + WIDTH, mTop + HEIGHT);
+    @Override
+    protected int getHeight() {
+        return HEIGHT;
+    }
 
-        mDrawable.setBounds(paddleBounds);
-        mDrawable.draw(canvas);
+    @Override
+    protected int getDrawableResource() {
+        return R.drawable.ball;
     }
 
     public void reverseY() {

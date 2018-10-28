@@ -29,8 +29,6 @@ public class GameView extends View {
 
     private static final int REFRESH_CANVAS = 1;
 
-    private int mWidth;
-    private int mHeight;
     private float mTouchX;
     private boolean mIsFire;
 
@@ -93,7 +91,7 @@ public class GameView extends View {
 
         // draw ball
         if (mBall == null) {
-            int ballLeft = canvas.getWidth() / 2 - Ball.WIDTH / 2;
+            int ballLeft = getWidth() / 2 - Ball.WIDTH / 2;
             int ballTop = mPaddle.getTop() - Ball.HEIGHT;
             mBall = new Ball(getContext(), ballLeft, ballTop);
         }
@@ -108,14 +106,6 @@ public class GameView extends View {
             mBlock.hide();
             mBall.reverseY();
         }
-    }
-
-    @Override
-    protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
-        super.onMeasure(widthMeasureSpec, heightMeasureSpec);
-        mWidth = MeasureSpec.getSize(widthMeasureSpec);
-        mHeight = MeasureSpec.getSize(heightMeasureSpec);
-        Log.d(TAG, "onDraw: mWidth#" + mWidth + ", mHeight#" + mHeight);
     }
 
     @Override
