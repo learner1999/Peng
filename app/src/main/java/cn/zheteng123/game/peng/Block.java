@@ -22,12 +22,12 @@ public class Block extends Spirit {
 
     private static final int HEIGHT = 50;
 
-    public Block(Context context) {
+    public Block(Context context, int left, int top) {
         super(context);
 
         // init position
-        mLeft = 500;
-        mTop = 500;
+        mLeft = left;
+        mTop = top;
     }
 
     @Override

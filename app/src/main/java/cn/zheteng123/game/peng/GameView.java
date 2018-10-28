@@ -13,6 +13,9 @@ import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 
+import java.util.ArrayList;
+import java.util.List;
+
 
 /**
  * <pre>
@@ -34,7 +37,8 @@ public class GameView extends View {
 
     private Paddle mPaddle;
     private Ball mBall;
-    private Block mBlock;
+
+    private List<Block> mBlockList;
 
     private Rect mRectCanvas;
     private Rect mRectPaddle;
@@ -84,10 +88,18 @@ public class GameView extends View {
         mPaddle.drawSelf(canvas);
 
         // draw block
-        if (mBlock == null) {
-            mBlock = new Block(getContext());
+        if (mBlockList == null) {
+            mBlockList = new ArrayList<>();
+
+            LevelInfo.Level level = LevelInfo.levels[1];
+            List<LevelInfo.Pos> blockPosList = level.blocks;
+            for (LevelInfo.Pos pos : blockPosList) {
+                mBlockList.add(new Block(getContext(), pos.left, pos.top));
+            }
         }
-        mBlock.drawSelf(canvas);
+        for (Block block : mBlockList) {
+            block.drawSelf(canvas);
+        }
 
         // draw ball
         if (mBall == null) {
@@ -102,9 +114,11 @@ public class GameView extends View {
         mBall.drawSelf(canvas);
 
         // collide with block, change direction
-        if (mBlock.isShow() && mBall.isCollide(mBlock.getBounds())) {
-            mBlock.hide();
-            mBall.reverseY();
+        for (Block block : mBlockList) {
+            if (block.isShow() && mBall.isCollide(block.getBounds())) {
+                block.hide();
+                mBall.reverseY();
+            }
         }
     }
 
