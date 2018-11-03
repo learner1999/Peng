@@ -35,13 +35,13 @@ public class LevelInfo {
         levels[2] = level2;
     }
 
-    static class Level {
-        List<Pos> blocks = new ArrayList<>();
+    public static class Level {
+        public List<Pos> blocks = new ArrayList<>();
     }
 
-    static class Pos {
-        int left;
-        int top;
+    public static class Pos {
+        public int left;
+        public int top;
 
         Pos(int left, int top) {
             this.left = left;

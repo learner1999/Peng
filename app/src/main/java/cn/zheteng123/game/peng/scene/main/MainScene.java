@@ -1,4 +1,4 @@
-package cn.zheteng123.game.peng;
+package cn.zheteng123.game.peng.scene.main;
 
 import android.content.Context;
 import android.graphics.Canvas;
@@ -7,6 +7,13 @@ import android.view.MotionEvent;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import cn.zheteng123.game.peng.GameView;
+import cn.zheteng123.game.peng.LevelInfo;
+import cn.zheteng123.game.peng.common.Scene;
+import cn.zheteng123.game.peng.scene.main.spirit.Ball;
+import cn.zheteng123.game.peng.scene.main.spirit.Block;
+import cn.zheteng123.game.peng.scene.main.spirit.Paddle;
 
 /**
  * <pre>

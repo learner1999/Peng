@@ -1,7 +1,10 @@
-package cn.zheteng123.game.peng;
+package cn.zheteng123.game.peng.scene.main.spirit;
 
 import android.content.Context;
 import android.graphics.Rect;
+
+import cn.zheteng123.game.peng.R;
+import cn.zheteng123.game.peng.common.Spirit;
 
 /**
  * <pre>

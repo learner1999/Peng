@@ -2,19 +2,18 @@ package cn.zheteng123.game.peng;
 
 import android.content.Context;
 import android.graphics.Canvas;
-import android.graphics.Rect;
 import android.os.Build;
 import android.os.Handler;
 import android.os.Message;
 import android.support.annotation.Nullable;
 import android.support.annotation.RequiresApi;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 
-import java.util.ArrayList;
-import java.util.List;
+import cn.zheteng123.game.peng.common.Scene;
+import cn.zheteng123.game.peng.scene.main.MainScene;
+import cn.zheteng123.game.peng.scene.start.StartScene;
 
 
 /**

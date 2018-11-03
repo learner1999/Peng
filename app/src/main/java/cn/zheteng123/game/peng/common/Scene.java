@@ -1,8 +1,10 @@
-package cn.zheteng123.game.peng;
+package cn.zheteng123.game.peng.common;
 
 import android.content.Context;
 import android.graphics.Canvas;
 import android.view.MotionEvent;
+
+import cn.zheteng123.game.peng.GameView;
 
 /**
  * <pre>

@@ -1,10 +1,11 @@
-package cn.zheteng123.game.peng;
+package cn.zheteng123.game.peng.scene.start.spirit;
 
-import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Rect;
+
+import cn.zheteng123.game.peng.common.ControlBlock;
 
 /**
  * <pre>

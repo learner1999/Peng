@@ -1,9 +1,13 @@
-package cn.zheteng123.game.peng;
+package cn.zheteng123.game.peng.scene.start;
 
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Rect;
 import android.view.MotionEvent;
+
+import cn.zheteng123.game.peng.GameView;
+import cn.zheteng123.game.peng.common.Scene;
+import cn.zheteng123.game.peng.scene.start.spirit.StartControlBlock;
 
 public class StartScene extends Scene {
 
