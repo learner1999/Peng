@@ -1,4 +1,4 @@
-package cn.zheteng123.game.peng.scene.start.spirit;
+package cn.zheteng123.game.peng.scene.gameover;
 
 import android.graphics.Canvas;
 import android.graphics.Color;
@@ -7,31 +7,22 @@ import android.graphics.Rect;
 
 import cn.zheteng123.game.peng.common.ControlBlock;
 
-/**
- * <pre>
- *     author : learner1999
- *     e-mail : roadoflearning@live.com
- *     time   : 2018/10/28
- *     desc   : 开始按钮
- *     version: 1.0
- * </pre>
- */
-public class StartControlBlock extends ControlBlock {
+public class GameOverText extends ControlBlock {
 
     private Paint mPaint;
 
-    public StartControlBlock() {
+    public GameOverText() {
         mPaint = new Paint();
     }
 
     @Override
     protected int getWidth() {
-        return 300;
+        return 400;
     }
 
     @Override
     protected int getHeight() {
-        return 150;
+        return 250;
     }
 
     public void drawSelf(Canvas canvas) {
@@ -43,15 +34,13 @@ public class StartControlBlock extends ControlBlock {
         mTop = (canvas.getHeight() - getHeight()) / 2;
 
         Rect bounds = new Rect(mLeft, mTop, mLeft + getWidth(), mTop + getHeight());
-        mPaint.setColor(Color.BLUE);
-        mPaint.setStyle(Paint.Style.FILL);
-        canvas.drawRect(bounds, mPaint);
 
-        mPaint.setColor(Color.WHITE);
-        mPaint.setTextSize(50);
+        mPaint.setColor(Color.BLACK);
+        mPaint.setTextSize(100);
         Rect rectText = new Rect();
-        mPaint.getTextBounds("开始", 0, 2, rectText);
+        mPaint.getTextBounds("游戏结束", 0, 4, rectText);
         Rect rectDrawText = getCenterPos(bounds, rectText);
-        canvas.drawText("开始", rectDrawText.left, rectDrawText.bottom, mPaint);
+        canvas.drawText("游戏结束", rectDrawText.left, rectDrawText.bottom, mPaint);
     }
+
 }

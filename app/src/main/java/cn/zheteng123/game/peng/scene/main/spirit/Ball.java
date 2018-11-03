@@ -3,6 +3,7 @@ package cn.zheteng123.game.peng.scene.main.spirit;
 import android.content.Context;
 import android.graphics.Rect;
 
+import cn.zheteng123.game.peng.GameView;
 import cn.zheteng123.game.peng.R;
 import cn.zheteng123.game.peng.common.Spirit;
 
@@ -35,14 +36,17 @@ public class Ball extends Spirit {
         mTop = top;
     }
 
-    public void move(Rect rectCanvas, Rect rectPaddle) {
+    public void move(Rect rectCanvas, Rect rectPaddle, GameView gameView) {
         mLeft += mSpeedX;
         mTop += mSpeedY;
         if (mLeft < rectCanvas.left || mLeft + WIDTH > rectCanvas.right) {
             mSpeedX = -mSpeedX;
         }
-        if (mTop < rectCanvas.top || mTop + HEIGHT > rectCanvas.bottom) {
+        if (mTop < rectCanvas.top) {
             mSpeedY = -mSpeedY;
+        }
+        if (mTop + HEIGHT > rectCanvas.bottom) {
+            gameView.jumpToGameOverScene();
         }
 
         // collide with paddle, change direction

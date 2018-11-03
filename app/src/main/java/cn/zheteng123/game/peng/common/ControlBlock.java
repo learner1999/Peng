@@ -44,4 +44,10 @@ public abstract class ControlBlock {
     public Rect getBounds() {
         return new Rect(mLeft, mTop, mLeft + getWidth(), mTop + getHeight());
     }
+
+    public Rect getCenterPos(Rect bounds, Rect rectText) {
+        int widthPadding = ((bounds.right - bounds.left) - (rectText.right - rectText.left)) / 2;
+        int heightPadding = ((bounds.bottom - bounds.top) - (rectText.bottom - rectText.top)) / 2;
+        return new Rect(bounds.left + widthPadding, bounds.top + heightPadding, bounds.right - widthPadding, bounds.bottom - heightPadding);
+    }
 }

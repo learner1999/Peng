@@ -12,6 +12,7 @@ import android.view.MotionEvent;
 import android.view.View;
 
 import cn.zheteng123.game.peng.common.Scene;
+import cn.zheteng123.game.peng.scene.gameover.GameOverScene;
 import cn.zheteng123.game.peng.scene.main.MainScene;
 import cn.zheteng123.game.peng.scene.start.StartScene;
 
@@ -88,5 +89,12 @@ public class GameView extends View {
      */
     public void jumpToMainScene() {
         mScene = new MainScene(this);
+    }
+
+    /**
+     * 跳转到游戏结束场景
+     */
+    public void jumpToGameOverScene() {
+        mScene = new GameOverScene(this);
     }
 }

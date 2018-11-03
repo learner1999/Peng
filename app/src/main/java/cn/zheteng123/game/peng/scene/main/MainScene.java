@@ -71,7 +71,7 @@ public class MainScene extends Scene {
         }
         if (mIsFire) {
             canvas.getClipBounds(mRectCanvas);
-            mBall.move(mRectCanvas, mPaddle.getBounds());
+            mBall.move(mRectCanvas, mPaddle.getBounds(), mGameView);
         }
         mBall.drawSelf(canvas);
 
