@@ -32,16 +32,7 @@ public class GameView extends View {
 
     private static final int REFRESH_CANVAS = 1;
 
-    private float mTouchX;
-    private boolean mIsFire;
-
-    private Paddle mPaddle;
-    private Ball mBall;
-
-    private List<Block> mBlockList;
-
-    private Rect mRectCanvas;
-    private Rect mRectPaddle;
+    private Scene mScene = new StartScene(this);
 
     private Handler mHandler = new Handler() {
         @Override
@@ -81,74 +72,22 @@ public class GameView extends View {
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
 
-        // draw paddle
-        if (mPaddle == null) {
-            mPaddle = new Paddle(canvas, getContext());
-        }
-        mPaddle.drawSelf(canvas);
-
-        // draw block
-        if (mBlockList == null) {
-            mBlockList = new ArrayList<>();
-
-            LevelInfo.Level level = LevelInfo.levels[1];
-            List<LevelInfo.Pos> blockPosList = level.blocks;
-            for (LevelInfo.Pos pos : blockPosList) {
-                mBlockList.add(new Block(getContext(), pos.left, pos.top));
-            }
-        }
-        for (Block block : mBlockList) {
-            block.drawSelf(canvas);
-        }
-
-        // draw ball
-        if (mBall == null) {
-            int ballLeft = getWidth() / 2 - Ball.WIDTH / 2;
-            int ballTop = mPaddle.getTop() - Ball.HEIGHT;
-            mBall = new Ball(getContext(), ballLeft, ballTop);
-        }
-        if (mIsFire) {
-            canvas.getClipBounds(mRectCanvas);
-            mBall.move(mRectCanvas, mPaddle.getBounds());
-        }
-        mBall.drawSelf(canvas);
-
-        // collide with block, change direction
-        for (Block block : mBlockList) {
-            if (block.isShow() && mBall.isCollide(block.getBounds())) {
-                block.hide();
-                mBall.reverseY();
-            }
-        }
+        mScene.draw(canvas, getContext());
     }
 
     @Override
     public boolean onTouchEvent(MotionEvent event) {
-        switch (event.getAction()) {
-            case MotionEvent.ACTION_DOWN:
-                mTouchX = event.getX();
-                break;
-
-            case MotionEvent.ACTION_UP:
-                mTouchX = event.getX();
-                mIsFire = true;
-                break;
-
-            case MotionEvent.ACTION_MOVE:
-                float x = event.getX();
-                mPaddle.moveX((int) (x - mTouchX));
-                mTouchX = event.getX();
-                break;
-
-            default:
-        }
-        return true;
+        return mScene.onTouchEvent(event);
     }
 
     private void init(Context context) {
         mHandler.sendEmptyMessageDelayed(REFRESH_CANVAS, 1000 / 30);
+    }
 
-        mIsFire = false;
-        mRectCanvas = new Rect();
+    /**
+     * 跳转到主场景
+     */
+    public void jumpToMainScene() {
+        mScene = new MainScene(this);
     }
 }
