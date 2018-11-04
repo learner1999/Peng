@@ -42,6 +42,7 @@ public class GameOverScene extends Scene {
                 if (isInRect(mAgainControlBlock.getBounds(), event.getX(), event.getY())) {
                     // 跳转到主场景
                     mGameView.jumpToMainScene();
+                    return true;
                 }
                 break;
 

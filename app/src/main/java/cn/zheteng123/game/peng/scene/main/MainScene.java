@@ -51,6 +51,13 @@ public class MainScene extends Scene {
 
     @Override
     public void draw(Canvas canvas, Context context) {
+
+        // 是否通关
+        if (mCurLevel > LevelInfo.levels.length - 1) {
+            mGameView.jumpWinScene();
+            return;
+        }
+
         if (mPaddle == null) {
             mPaddle = new Paddle(canvas, context);
         }
@@ -85,6 +92,7 @@ public class MainScene extends Scene {
             }
             if (mBall.getTop() + mBall.getHeight() > mRectCanvas.bottom) {
                 mGameView.jumpToGameOverScene();
+                return;
             }
 
             // collide with paddle, change direction

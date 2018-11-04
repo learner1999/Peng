@@ -35,6 +35,7 @@ public class StartScene extends Scene {
                 if (isInRect(mStartControlBlock.getBounds(), event.getX(), event.getY())) {
                     // 跳转到主场景
                     mGameView.jumpToMainScene();
+                    return true;
                 }
                 break;
 

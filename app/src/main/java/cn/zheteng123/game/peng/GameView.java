@@ -15,6 +15,7 @@ import cn.zheteng123.game.peng.common.Scene;
 import cn.zheteng123.game.peng.scene.gameover.GameOverScene;
 import cn.zheteng123.game.peng.scene.main.MainScene;
 import cn.zheteng123.game.peng.scene.start.StartScene;
+import cn.zheteng123.game.peng.scene.win.WinScene;
 
 
 /**
@@ -96,5 +97,12 @@ public class GameView extends View {
      */
     public void jumpToGameOverScene() {
         mScene = new GameOverScene(this);
+    }
+
+    /**
+     * 跳转到通关场景
+     */
+    public void jumpWinScene() {
+        mScene = new WinScene(this);
     }
 }
