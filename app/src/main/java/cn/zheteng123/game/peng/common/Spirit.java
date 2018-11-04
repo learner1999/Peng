@@ -32,13 +32,13 @@ public abstract class Spirit {
      * 获取宽度
      * @return 宽度
      */
-    protected abstract int getWidth();
+    public abstract int getWidth();
 
     /**
      * 获取高度
      * @return 高度
      */
-    protected abstract int getHeight();
+    public abstract int getHeight();
 
     /**
      * 获取图片资源

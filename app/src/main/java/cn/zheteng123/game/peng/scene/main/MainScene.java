@@ -71,7 +71,21 @@ public class MainScene extends Scene {
         }
         if (mIsFire) {
             canvas.getClipBounds(mRectCanvas);
-            mBall.move(mRectCanvas, mPaddle.getBounds(), mGameView);
+            mBall.move();
+            if (mBall.getLeft() < mRectCanvas.left || mBall.getLeft() + mBall.getWidth() > mRectCanvas.right) {
+                mBall.reverseX();
+            }
+            if (mBall.getTop() < mRectCanvas.top) {
+                mBall.reverseY();
+            }
+            if (mBall.getTop() + mBall.getHeight() > mRectCanvas.bottom) {
+                mGameView.jumpToGameOverScene();
+            }
+
+            // collide with paddle, change direction
+            if (mBall.isCollide(mPaddle.getBounds())) {
+                mBall.reverseY();
+            }
         }
         mBall.drawSelf(canvas);
 

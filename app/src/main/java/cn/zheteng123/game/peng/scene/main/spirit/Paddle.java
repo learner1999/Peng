@@ -31,10 +31,12 @@ public class Paddle extends Spirit {
         mTop = canvas.getHeight() - HEIGHT;
     }
 
+    @Override
     public int getWidth() {
         return WIDTH;
     }
 
+    @Override
     public int getHeight() {
         return HEIGHT;
     }

@@ -36,32 +36,18 @@ public class Ball extends Spirit {
         mTop = top;
     }
 
-    public void move(Rect rectCanvas, Rect rectPaddle, GameView gameView) {
+    public void move() {
         mLeft += mSpeedX;
         mTop += mSpeedY;
-        if (mLeft < rectCanvas.left || mLeft + WIDTH > rectCanvas.right) {
-            mSpeedX = -mSpeedX;
-        }
-        if (mTop < rectCanvas.top) {
-            mSpeedY = -mSpeedY;
-        }
-        if (mTop + HEIGHT > rectCanvas.bottom) {
-            gameView.jumpToGameOverScene();
-        }
-
-        // collide with paddle, change direction
-        if (isCollide(rectPaddle)) {
-            mSpeedY = -mSpeedY;
-        }
     }
 
     @Override
-    protected int getWidth() {
+    public int getWidth() {
         return WIDTH;
     }
 
     @Override
-    protected int getHeight() {
+    public int getHeight() {
         return HEIGHT;
     }
 
@@ -72,5 +58,9 @@ public class Ball extends Spirit {
 
     public void reverseY() {
         mSpeedY = -mSpeedY;
+    }
+
+    public void reverseX() {
+        mSpeedX = -mSpeedX;
     }
 }
