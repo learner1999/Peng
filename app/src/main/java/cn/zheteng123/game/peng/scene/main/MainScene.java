@@ -37,6 +37,11 @@ public class MainScene extends Scene {
 
     private float mTouchX;
 
+    /**
+     * 当前关卡
+     */
+    private int mCurLevel = 1;
+
     public MainScene(GameView gameView) {
         super(gameView);
 
@@ -54,7 +59,7 @@ public class MainScene extends Scene {
         if (mBlockList == null) {
             mBlockList = new ArrayList<>();
 
-            LevelInfo.Level level = LevelInfo.levels[1];
+            LevelInfo.Level level = LevelInfo.levels[mCurLevel];
             List<LevelInfo.Pos> blockPosList = level.blocks;
             for (LevelInfo.Pos pos : blockPosList) {
                 mBlockList.add(new Block(context, pos.left, pos.top));
@@ -95,6 +100,21 @@ public class MainScene extends Scene {
                 block.hide();
                 mBall.reverseY();
             }
+        }
+
+        // 判断砖块是否消灭完毕，进入下一关
+        boolean isAllBlockDestroyed = true;
+        for (Block block : mBlockList) {
+            if (block.isShow()) {
+                isAllBlockDestroyed = false;
+                break;
+            }
+        }
+        if (isAllBlockDestroyed) {
+            mCurLevel += 1;
+
+            // 将 mBlockList 置为 null，使其走砖块初始化流程，这块逻辑需要优化
+            mBlockList = null;
         }
     }
 
