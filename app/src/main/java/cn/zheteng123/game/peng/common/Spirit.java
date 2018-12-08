@@ -61,8 +61,16 @@ public abstract class Spirit {
         mDrawable.draw(canvas);
     }
 
+    public void setLeft(int left) {
+        mLeft = left;
+    }
+
     public int getLeft() {
         return mLeft;
+    }
+
+    public void setTop(int top) {
+        mTop = top;
     }
 
     public int getTop() {

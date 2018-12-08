@@ -41,6 +41,9 @@ public class MainScene extends Scene {
 
     private float mTouchX;
 
+    // 球是否被按住
+    private boolean mIsBallTouched = false;
+
     /**
      * 当前关卡
      */
@@ -141,6 +144,13 @@ public class MainScene extends Scene {
         switch (event.getAction()) {
             case MotionEvent.ACTION_DOWN:
                 mTouchX = event.getX();
+
+                // 点击球可以拖动
+                if (GameUtil.isInRect(mBall.getBounds(), event.getX(), event.getY())) {
+                    mIsBallTouched = true;
+                } else {
+                    mIsBallTouched = false;
+                }
                 break;
 
             case MotionEvent.ACTION_UP:
@@ -152,12 +162,24 @@ public class MainScene extends Scene {
                     // 游戏暂停或继续
                     mGameView.changePauseState();
                 }
+
+                mIsBallTouched = false;
+
                 break;
 
             case MotionEvent.ACTION_MOVE:
-                float x = event.getX();
-                mPaddle.moveX((int) (x - mTouchX));
-                mTouchX = event.getX();
+                if (!mGameView.isPause()) {
+                    float x = event.getX();
+                    mPaddle.moveX((int) (x - mTouchX));
+                    mTouchX = event.getX();
+                }
+
+                // 移动球
+                if (mIsBallTouched) {
+                    mBall.setLeft(((int) event.getX()) - mBall.getWidth() / 2);
+                    mBall.setTop(((int) event.getY()) - mBall.getHeight() / 2);
+                    mGameView.refresh();
+                }
                 break;
 
             default:

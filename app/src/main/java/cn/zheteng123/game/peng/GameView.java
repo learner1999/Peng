@@ -36,6 +36,7 @@ public class GameView extends View {
     // 帧率
     private int mFps = 60;
 
+    // 是否处于暂停状态
     private boolean mPause;
 
     private Scene mScene = new StartScene(this);
@@ -89,7 +90,7 @@ public class GameView extends View {
     }
 
     private void init(Context context) {
-        mHandler.sendEmptyMessageDelayed(REFRESH_CANVAS, 1000 / mFps);
+        startMainLoop();
     }
 
     /**
@@ -119,7 +120,29 @@ public class GameView extends View {
     public void changePauseState() {
         mPause = !mPause;
         if (!mPause) {
-            mHandler.sendEmptyMessageDelayed(REFRESH_CANVAS, 1000 / mFps);
+            startMainLoop();
         }
+    }
+
+    /**
+     * 开始游戏绘制
+     */
+    public void startMainLoop() {
+        mHandler.sendEmptyMessageDelayed(REFRESH_CANVAS, 1000 / mFps);
+    }
+
+    /**
+     * 刷新游戏画面
+     */
+    public void refresh() {
+        invalidate();
+    }
+
+    /**
+     * 是否处于暂停状态
+     * @return 是否暂停
+     */
+    public boolean isPause() {
+        return mPause;
     }
 }
