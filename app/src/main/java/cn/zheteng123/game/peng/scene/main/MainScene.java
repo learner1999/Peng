@@ -14,6 +14,7 @@ import cn.zheteng123.game.peng.common.Scene;
 import cn.zheteng123.game.peng.scene.main.spirit.Ball;
 import cn.zheteng123.game.peng.scene.main.spirit.Block;
 import cn.zheteng123.game.peng.scene.main.spirit.Paddle;
+import cn.zheteng123.game.peng.scene.main.spirit.PauseControlBlock;
 
 /**
  * <pre>
@@ -30,6 +31,8 @@ public class MainScene extends Scene {
     private Ball mBall;
 
     private List<Block> mBlockList;
+
+    private PauseControlBlock mPauseControlBlock;
 
     private Rect mRectCanvas;
 
@@ -124,6 +127,12 @@ public class MainScene extends Scene {
             // 将 mBlockList 置为 null，使其走砖块初始化流程，这块逻辑需要优化
             mBlockList = null;
         }
+
+        // 暂停按钮
+        if (mPauseControlBlock == null) {
+            mPauseControlBlock = new PauseControlBlock();
+        }
+        mPauseControlBlock.drawSelf(canvas);
     }
 
     @Override
