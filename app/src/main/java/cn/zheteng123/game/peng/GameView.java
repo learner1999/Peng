@@ -33,6 +33,11 @@ public class GameView extends View {
 
     private static final int REFRESH_CANVAS = 1;
 
+    // 帧率
+    private int mFps = 60;
+
+    private boolean mPause;
+
     private Scene mScene = new StartScene(this);
 
     private Handler mHandler = new Handler() {
@@ -40,8 +45,10 @@ public class GameView extends View {
         public void handleMessage(Message msg) {
             switch (msg.what) {
                 case REFRESH_CANVAS:
-                    invalidate();
-                    mHandler.sendEmptyMessageDelayed(REFRESH_CANVAS, 1000 / 60);
+                    if (!mPause) {
+                        invalidate();
+                        mHandler.sendEmptyMessageDelayed(REFRESH_CANVAS, 1000 / mFps);
+                    }
                     break;
                 default:
             }
@@ -82,7 +89,7 @@ public class GameView extends View {
     }
 
     private void init(Context context) {
-        mHandler.sendEmptyMessageDelayed(REFRESH_CANVAS, 1000 / 30);
+        mHandler.sendEmptyMessageDelayed(REFRESH_CANVAS, 1000 / mFps);
     }
 
     /**
@@ -104,5 +111,15 @@ public class GameView extends View {
      */
     public void jumpWinScene() {
         mScene = new WinScene(this);
+    }
+
+    /**
+     * 暂停或继续游戏
+     */
+    public void changePauseState() {
+        mPause = !mPause;
+        if (!mPause) {
+            mHandler.sendEmptyMessageDelayed(REFRESH_CANVAS, 1000 / mFps);
+        }
     }
 }

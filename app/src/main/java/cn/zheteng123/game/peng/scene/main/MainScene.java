@@ -10,6 +10,7 @@ import java.util.List;
 
 import cn.zheteng123.game.peng.GameView;
 import cn.zheteng123.game.peng.LevelInfo;
+import cn.zheteng123.game.peng.common.GameUtil;
 import cn.zheteng123.game.peng.common.Scene;
 import cn.zheteng123.game.peng.scene.main.spirit.Ball;
 import cn.zheteng123.game.peng.scene.main.spirit.Block;
@@ -145,6 +146,12 @@ public class MainScene extends Scene {
             case MotionEvent.ACTION_UP:
                 mTouchX = event.getX();
                 mIsFire = true;
+
+                // 点击暂停按钮
+                if (GameUtil.isInRect(mPauseControlBlock.getBounds(), event.getX(), event.getY())) {
+                    // 游戏暂停或继续
+                    mGameView.changePauseState();
+                }
                 break;
 
             case MotionEvent.ACTION_MOVE:
